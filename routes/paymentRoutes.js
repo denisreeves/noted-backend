@@ -103,10 +103,11 @@ router.get("/check-access/:userId", async (req, res) => {
       return res.status(400).json({ success: false, message: "User ID is required." });
     }
 
-    const payment = await Payment.findOne({ userId });
-    res.json({ hasAccess: !!payment }); // Returns `true` if payment exists, `false` otherwise
+    const payment = await Payment.findOne({ userId, status: "success" });
+
+    res.json({ hasAccess: !!payment }); // Returns `true` if a successful payment exists, `false` otherwise
   } catch (error) {
-    console.error("Error checking access:", error);
+    console.error("❌ Error checking access:", error);
     res.status(500).json({ success: false, message: "Error checking access", error: error.message });
   }
 });
