@@ -9,6 +9,7 @@ const backupRoutes = require("./routes/backupRoute");
 const backupJob = require("./jobs/backupJob"); // ✅ Import the backup job
 const backupFileRoutes = require("./routes/backupFileRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
+const reminderRoutes = require("./routes/reminderRoutes");
 const path = require("path");
 const fs = require("fs");
 const Backup = require("./models/Backup");
@@ -27,6 +28,7 @@ app.use("/api/notes", noteRoutes);
 app.use("/api/backup", backupRoutes);
 app.use("/api/backups", backupFileRoutes);
 app.use("/api/payment", paymentRoutes);
+app.use("/api/reminders", reminderRoutes);
 
 app.use("/backups", express.static(path.join(__dirname, "backups")));
 
